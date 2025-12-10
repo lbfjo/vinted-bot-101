@@ -36,7 +36,7 @@ searches:
   - name: "Arc'teryx jackets"
     keywords: ["Arc'teryx", "jacket"]
     price_max: 250
-    locales: ["fr"]
+    locales: ["pt", "es", "fr", "it"]
     # webhook: "https://hooks.slack.com/services/override"
 
   # Example 2: Clarks Originals
@@ -52,8 +52,7 @@ searches:
 
     price_max: 220
     locales: ["pt", "es", "fr", "it"]
-    exclude_keywords: ["replica", "inspired", "style", "dupe", "fake", "repro", "look", "similar"]
-    min_seller_rating: 4.5
+    min_seller_rating: 4.0
     enabled: true
 
   # Example 3: Uniqlo
@@ -66,8 +65,7 @@ searches:
       - "Uniqlo"
     price_max: 200
     locales: ["pt", "es", "fr", "it"]
-    exclude_keywords: ["replica", "inspired", "style", "dupe", "fake", "repro"]
-    min_seller_rating: 4.5
+    min_seller_rating: 4.0
     enabled: true
 
   # Example 4: Universal Works
@@ -81,6 +79,5 @@ searches:
       - "fatigue pants"
     price_max: 250
     locales: ["pt", "es", "fr", "it"]
-    exclude_keywords: ["replica", "inspired", "style", "dupe", "fake", "repro"]
-    min_seller_rating: 4.5
+    min_seller_rating: 4.0
     enabled: true
