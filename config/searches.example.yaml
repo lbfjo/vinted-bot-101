@@ -33,6 +33,12 @@ max_batch_size: 10
 # ============================================================================
 searches:
   # Example 1: Basic search with price filter
+  - name: "Rapha"
+    keywords: ["rapha", "Rapha"]
+    price_max: 250
+    locales: ["pt", "es", "fr", "it"]
+    # webhook: "https://hooks.slack.com/services/override"
+
   - name: "Arc'teryx jackets"
     keywords: ["Arc'teryx", "jacket"]
     price_max: 250
