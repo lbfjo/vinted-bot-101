@@ -103,7 +103,10 @@ def _get_session(locale: str) -> requests.Session:
         "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
         "Accept": "application/json, text/plain, */*",
         "Accept-Language": "en-US,en;q=0.9",
-        "Accept-Encoding": "gzip, deflate, br",
+        # Avoid advertising brotli (br) support because requests does not decode it
+        # without optional dependencies, which leads to binary gibberish and JSON
+        # decode errors. Gzip/deflate are decoded by default.
+        "Accept-Encoding": "gzip, deflate",
         "Referer": f"https://{domain}/",
         "Origin": f"https://{domain}",
         "Connection": "keep-alive",
