@@ -43,19 +43,13 @@ searches:
   - name: "Clarks Originals"
     keywords:
       - "Clarks Originals"
-      - "Clarks Original"
-      - "Clarks"
       - "Wallabee"
       - "Clarks Wallabee"
-      - "Wallabee boot"
       - "Desert Boot"
       - "Clarks Desert Boot"
-      - "Desert boot 2"
-      - "Desert London"
       - "Weaver"
       - "Clarks Weaver"
-      - "Trek"
-      - "Clarks Trek"
+
     price_max: 220
     locales: ["pt", "es", "fr", "it"]
     exclude_keywords: ["replica", "inspired", "style", "dupe", "fake", "repro", "look", "similar"]
@@ -65,15 +59,11 @@ searches:
   # Example 3: Uniqlo
   - name: "Uniqlo"
     keywords:
-      - "Uniqlo"
       - "Uniqlo U"
       - "Uniqlo +J"
-      - "Uniqlo C"
       - "Uniqlo x JW Anderson"
-      - "Uniqlo x Marni"
-      - "Uniqlo x Theory"
-      - "Uniqlo x White Mountaineering"
       - "Uniqlo x Engineered Garments"
+      - "Uniqlo"
     price_max: 200
     locales: ["pt", "es", "fr", "it"]
     exclude_keywords: ["replica", "inspired", "style", "dupe", "fake", "repro"]
@@ -85,17 +75,10 @@ searches:
     keywords:
       - "Universal Works"
       - "Universalworks"
-      - "Universal Works London"
-      - "UW Universal Works"
-      - "Universal Works jacket"
-      - "Universal Works chore jacket"
-      - "Universal Works work jacket"
-      - "Universal Works overshirt"
-      - "Universal Works trousers"
-      - "Universal Works fatigue pants"
-      - "Universal Works pants"
-      - "Universal Works chinos"
-      - "Universal Works coat"
+      - "chore jacket"
+      - "work jacket"
+      - "overshirt"
+      - "fatigue pants"
     price_max: 250
     locales: ["pt", "es", "fr", "it"]
     exclude_keywords: ["replica", "inspired", "style", "dupe", "fake", "repro"]
