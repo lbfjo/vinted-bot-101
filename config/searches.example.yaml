@@ -1,0 +1,16 @@
+# Copy this file to config/searches.yaml and edit values to get started
+poll_interval_seconds: 300
+slack_webhook_url: "https://hooks.slack.com/services/your/webhook/url"
+discord_webhook_url: "https://discord.com/api/webhooks/your/webhook"
+
+searches:
+  - name: "Arc'teryx jackets"
+    keywords: ["Arc'teryx", "jacket"]
+    price_max: 250
+    locales: ["fr"]
+    # Optional: override webhooks per search
+    # webhook: "https://hooks.slack.com/services/override"
+  - name: "Lego UCS"
+    keywords: ["Lego UCS"]
+    price_max: 500
+    locales: ["de", "en"]
