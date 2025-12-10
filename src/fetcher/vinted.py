@@ -9,6 +9,7 @@ from typing import Iterable, List, Optional
 from urllib.parse import urlencode
 
 import requests
+from requests.exceptions import JSONDecodeError
 
 logger = logging.getLogger(__name__)
 
