@@ -8,6 +8,7 @@ from typing import Iterable, List, Optional
 from urllib.parse import urlencode
 
 import requests
+from requests.exceptions import JSONDecodeError
 
 logger = logging.getLogger(__name__)
 
@@ -253,7 +254,17 @@ def fetch_new_listings(
 
             response.raise_for_status()
 
-            data = response.json()
+            try:
+                data = response.json()
+            except JSONDecodeError as e:
+                body_preview = response.text.replace("\n", " ")[:200]
+                logger.error(
+                    "Failed to decode JSON response (status %s): %s. Body preview: %s",
+                    response.status_code,
+                    e,
+                    body_preview,
+                )
+                break
             items = data.get("items", [])
 
             if not items:
