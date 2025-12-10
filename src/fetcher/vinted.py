@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import logging
 import random
 import time
@@ -256,14 +257,29 @@ def fetch_new_listings(
 
             try:
                 data = response.json()
-            except JSONDecodeError as e:
+            except json.JSONDecodeError as e:
                 body_preview = response.text.replace("\n", " ")[:200]
+                content_type = response.headers.get("Content-Type", "unknown")
+                lower_preview = body_preview.lower()
+                block_hint = None
+
+                if "cloudflare" in lower_preview or "attention required" in lower_preview:
+                    block_hint = "Response looks like Cloudflare bot protection; the IP may be blocked."
+                elif "captcha" in lower_preview:
+                    block_hint = "Response contains a captcha page; Vinted may be challenging automated traffic."
+
                 logger.error(
-                    "Failed to decode JSON response (status %s): %s. Body preview: %s",
+                    "Failed to decode JSON response (status %s, content-type %s): %s. Body preview: %s%s",
                     response.status_code,
+                    content_type,
                     e,
                     body_preview,
+                    f" Hint: {block_hint}" if block_hint else "",
                 )
+
+                if attempt < MAX_RETRIES - 1:
+                    time.sleep(BACKOFF_FACTOR ** attempt)
+                    continue
                 break
             items = data.get("items", [])
 
