@@ -37,39 +37,67 @@ searches:
     keywords: ["Arc'teryx", "jacket"]
     price_max: 250
     locales: ["fr"]
-    # Optional: override webhook for this specific search
     # webhook: "https://hooks.slack.com/services/override"
 
-  # Example 2: Multi-locale search with advanced filters
-  - name: "Lego UCS"
-    keywords: ["Lego UCS"]
-    price_min: 50        # Minimum price filter
-    price_max: 500       # Maximum price filter
-    locales: ["de", "en", "fr"]
-    # Keyword filters - applied to title and brand
-    include_keywords: ["Star Wars", "Millennium", "Death Star"]  # At least one must match
-    exclude_keywords: ["damaged", "incomplete", "missing"]       # None should match
-    # Seller filters
-    min_seller_rating: 4.0   # Minimum seller rating (0-5)
-    # Cooldown override for this search (minutes)
-    cooldown_minutes: 30
-
-  # Example 3: Designer items with strict seller requirements
-  - name: "Designer bags"
-    keywords: ["Louis Vuitton", "Gucci", "Prada"]
-    price_max: 1000
-    locales: ["fr", "it"]
-    exclude_keywords: ["replica", "inspired", "style"]
+  # Example 2: Clarks Originals
+  - name: "Clarks Originals"
+    keywords:
+      - "Clarks Originals"
+      - "Clarks Original"
+      - "Clarks"
+      - "Wallabee"
+      - "Clarks Wallabee"
+      - "Wallabee boot"
+      - "Desert Boot"
+      - "Clarks Desert Boot"
+      - "Desert boot 2"
+      - "Desert London"
+      - "Weaver"
+      - "Clarks Weaver"
+      - "Trek"
+      - "Clarks Trek"
+    price_max: 220
+    locales: ["pt", "es", "fr", "it"]
+    exclude_keywords: ["replica", "inspired", "style", "dupe", "fake", "repro", "look", "similar"]
     min_seller_rating: 4.5
-    # Disable this search temporarily
     enabled: true
 
-  # Example 4: Sneaker hunting
-  - name: "Nike Dunks"
-    keywords: ["Nike Dunk"]
+  # Example 3: Uniqlo
+  - name: "Uniqlo"
+    keywords:
+      - "Uniqlo"
+      - "Uniqlo U"
+      - "Uniqlo +J"
+      - "Uniqlo C"
+      - "Uniqlo x JW Anderson"
+      - "Uniqlo x Marni"
+      - "Uniqlo x Theory"
+      - "Uniqlo x White Mountaineering"
+      - "Uniqlo x Engineered Garments"
     price_max: 200
-    locales: ["en", "de", "fr"]
-    include_keywords: ["Low", "High", "SB"]
-    exclude_keywords: ["fake", "rep"]
-    min_seller_rating: 4.0
-    cooldown_minutes: 15  # More frequent alerts for hot items
+    locales: ["pt", "es", "fr", "it"]
+    exclude_keywords: ["replica", "inspired", "style", "dupe", "fake", "repro"]
+    min_seller_rating: 4.5
+    enabled: true
+
+  # Example 4: Universal Works
+  - name: "Universal Works"
+    keywords:
+      - "Universal Works"
+      - "Universalworks"
+      - "Universal Works London"
+      - "UW Universal Works"
+      - "Universal Works jacket"
+      - "Universal Works chore jacket"
+      - "Universal Works work jacket"
+      - "Universal Works overshirt"
+      - "Universal Works trousers"
+      - "Universal Works fatigue pants"
+      - "Universal Works pants"
+      - "Universal Works chinos"
+      - "Universal Works coat"
+    price_max: 250
+    locales: ["pt", "es", "fr", "it"]
+    exclude_keywords: ["replica", "inspired", "style", "dupe", "fake", "repro"]
+    min_seller_rating: 4.5
+    enabled: true
