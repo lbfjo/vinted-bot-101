@@ -1,16 +1,75 @@
 # Copy this file to config/searches.yaml and edit values to get started
+# ============================================================================
+# GLOBAL SETTINGS
+# ============================================================================
+
+# How often to poll (only used for local continuous mode, GitHub Actions uses cron)
 poll_interval_seconds: 300
+
+# Webhook URLs - can also be set via environment variables:
+# SLACK_WEBHOOK_URL and DISCORD_WEBHOOK_URL
 slack_webhook_url: "https://hooks.slack.com/services/your/webhook/url"
 discord_webhook_url: "https://discord.com/api/webhooks/your/webhook"
 
+# Default cooldown between notifications per search (in minutes)
+# Prevents spam when many listings match. Can be overridden per search.
+default_cooldown_minutes: 60
+
+# State file for tracking seen listings (persists between runs)
+# Can also be set via STATE_FILE environment variable
+state_file: "data/state.json"
+
+# Maximum listing IDs to remember per search (prevents unbounded growth)
+max_seen_ids_per_search: 1000
+
+# Group multiple matches into a single notification message
+batch_notifications: false
+
+# Maximum listings per batch notification
+max_batch_size: 10
+
+# ============================================================================
+# SEARCH RULES
+# ============================================================================
 searches:
+  # Example 1: Basic search with price filter
   - name: "Arc'teryx jackets"
     keywords: ["Arc'teryx", "jacket"]
     price_max: 250
     locales: ["fr"]
-    # Optional: override webhooks per search
+    # Optional: override webhook for this specific search
     # webhook: "https://hooks.slack.com/services/override"
+
+  # Example 2: Multi-locale search with advanced filters
   - name: "Lego UCS"
     keywords: ["Lego UCS"]
-    price_max: 500
-    locales: ["de", "en"]
+    price_min: 50        # Minimum price filter
+    price_max: 500       # Maximum price filter
+    locales: ["de", "en", "fr"]
+    # Keyword filters - applied to title and brand
+    include_keywords: ["Star Wars", "Millennium", "Death Star"]  # At least one must match
+    exclude_keywords: ["damaged", "incomplete", "missing"]       # None should match
+    # Seller filters
+    min_seller_rating: 4.0   # Minimum seller rating (0-5)
+    # Cooldown override for this search (minutes)
+    cooldown_minutes: 30
+
+  # Example 3: Designer items with strict seller requirements
+  - name: "Designer bags"
+    keywords: ["Louis Vuitton", "Gucci", "Prada"]
+    price_max: 1000
+    locales: ["fr", "it"]
+    exclude_keywords: ["replica", "inspired", "style"]
+    min_seller_rating: 4.5
+    # Disable this search temporarily
+    enabled: true
+
+  # Example 4: Sneaker hunting
+  - name: "Nike Dunks"
+    keywords: ["Nike Dunk"]
+    price_max: 200
+    locales: ["en", "de", "fr"]
+    include_keywords: ["Low", "High", "SB"]
+    exclude_keywords: ["fake", "rep"]
+    min_seller_rating: 4.0
+    cooldown_minutes: 15  # More frequent alerts for hot items

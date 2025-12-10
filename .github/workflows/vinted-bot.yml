@@ -22,10 +22,34 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Download state artifact
+        uses: dawidd6/action-download-artifact@v3
+        with:
+          name: vinted-bot-state
+          path: data/
+          if_no_artifact_found: ignore
+        continue-on-error: true
+
+      - name: Prepare config
+        run: |
+          # Use custom config if exists, otherwise use example
+          if [ ! -f config/searches.yaml ]; then
+            cp config/searches.example.yaml config/searches.yaml
+          fi
+          # Ensure data directory exists
+          mkdir -p data
+
       - name: Run Vinted bot
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
-        run: |
-          cp config/searches.example.yaml config/searches.yaml
-          python -m src.cli
+          STATE_FILE: data/state.json
+        run: python -m src.cli
+
+      - name: Upload state artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: vinted-bot-state
+          path: data/state.json
+          retention-days: 30
+          if-no-files-found: ignore

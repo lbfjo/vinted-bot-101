@@ -3,3 +3,6 @@ __pycache__/
 .venv/
 .env
 config/searches.yaml
+
+# State data (persisted via GitHub Actions artifacts)
+data/
